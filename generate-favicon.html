@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMS Favicon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .icon-preview {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .icon-preview img {
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #4F46E5;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px;
+            font-weight: bold;
+        }
+        .download-btn:hover {
+            background: #7C3AED;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 GMS System Icon Generator</h1>
+        <p>Your professional mountain-themed icon for the Guide Management System is ready!</p>
+        
+        <div class="icon-preview">
+            <h3>Icon Preview</h3>
+            <img src="assets/images/gms-icon.svg" alt="GMS Icon 32x32" width="32" height="32">
+            <img src="assets/images/gms-icon-large.svg" alt="GMS Icon 128x128" width="128" height="128">
+            <br>
+            <small>SVG icons - scalable at any size</small>
+        </div>
+        
+        <div class="icon-preview" id="icon-preview">
+            <h3>Generated PNG Icons</h3>
+            <p>These are automatically generated from the SVG:</p>
+            <!-- PNG icons will be generated here by JavaScript -->
+        </div>
+        
+        <div class="instructions">
+            <h4>📋 How to Use These Icons:</h4>
+            <ol>
+                <li><strong>Browser Tab Icon:</strong> The SVG icon will automatically appear in browser tabs</li>
+                <li><strong>Bookmarks:</strong> Icons will show in bookmarks and favorites</li>
+                <li><strong>Mobile:</strong> Icons will appear when users add your site to their home screen</li>
+            </ol>
+        </div>
+        
+        <h3>🚀 Features of Your New Icon:</h3>
+        <ul>
+            <li><strong>Mountain Theme:</strong> Represents outdoor activities and guides</li>
+            <li><strong>Compass Element:</strong> Symbolizes guidance and direction</li>
+            <li><strong>Professional Colors:</strong> Purple gradient with gold accents</li>
+            <li><strong>Scalable:</strong> Looks crisp at any size</li>
+            <li><strong>Modern Design:</strong> Clean, professional appearance</li>
+        </ul>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="assets/images/gms-icon.svg" class="download-btn" download>
+                📥 Download Small Icon (32x32)
+            </a>
+            <a href="assets/images/gms-icon-large.svg" class="download-btn" download>
+                📥 Download Large Icon (128x128)
+            </a>
+        </div>
+        
+        <div style="background: #fff3cd; padding: 15px; border-radius: 6px; margin: 20px 0;">
+            <strong>💡 Pro Tip:</strong> The icons are already linked in your header.php file, so they should appear automatically in browser tabs and bookmarks!
+        </div>
+        
+        <h3>🎨 Icon Design Elements:</h3>
+        <ul>
+            <li><strong>Background:</strong> Purple gradient circle with shadow</li>
+            <li><strong>Mountains:</strong> Layered mountain ranges in dark colors</li>
+            <li><strong>Sun:</strong> Golden sun with radiating rays</li>
+            <li><strong>Compass:</strong> Central navigation element in gold</li>
+            <li><strong>Trees:</strong> Green triangular trees for nature</li>
+            <li><strong>Text:</strong> "GMS" at the bottom in white</li>
+        </ul>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button onclick="downloadAllIcons()" class="download-btn" style="background: #059669;">
+                📥 Download All PNG Icons
+            </button>
+        </div>
+    </div>
+    
+    <script src="assets/js/icon-generator.js"></script>
+    <script>
+        function downloadAllIcons() {
+            if (window.GMSIconGenerator) {
+                const generator = new GMSIconGenerator();
+                [16, 32, 48, 64, 128, 256].forEach(size => {
+                    setTimeout(() => {
+                        generator.downloadIcon(size, 'gms-icon');
+                    }, size * 10);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Test - GMS System</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <h1>AJAX Test Page</h1>
+    
+    <button onclick="testAddGuide()">Test Add Guide</button>
+    <button onclick="testGetGuide()">Test Get Guide</button>
+    <button onclick="testEditGuide()">Test Edit Guide</button>
+    <button onclick="testDeleteGuide()">Test Delete Guide</button>
+    
+    <script>
+        function testAddGuide() {
+            const formData = new FormData();
+            formData.append('name', 'Test Guide');
+            formData.append('type', 'Mountain Guide');
+            formData.append('contact_info', 'Test Contact');
+            
+            fetch('ajax/add_guide.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Add Guide Response:', data);
+                if (data.success) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Guide added successfully',
+                        icon: 'success'
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message || 'Failed to add guide',
+                        icon: 'error'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An unexpected error occurred',
+                    icon: 'error'
+                });
+            });
+        }
+        
+        function testGetGuide() {
+            fetch('ajax/get_guide.php?id=1')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Get Guide Response:', data);
+                if (data.success) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: `Guide: ${data.guide.name}`,
+                        icon: 'success'
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message || 'Failed to get guide',
+                        icon: 'error'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An unexpected error occurred',
+                    icon: 'error'
+                });
+            });
+        }
+        
+        function testEditGuide() {
+            const formData = new FormData();
+            formData.append('id', '1');
+            formData.append('name', 'Updated Test Guide');
+            formData.append('type', 'Safari Guide');
+            formData.append('contact_info', 'Updated Contact');
+            
+            fetch('ajax/edit_guide.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Edit Guide Response:', data);
+                if (data.success) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Guide updated successfully',
+                        icon: 'success'
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message || 'Failed to update guide',
+                        icon: 'error'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An unexpected error occurred',
+                    icon: 'error'
+                });
+            });
+        }
+        
+        function testDeleteGuide() {
+            Swal.fire({
+                title: 'Delete Guide?',
+                text: 'Are you sure you want to delete this guide?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('ajax/delete_guide.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ id: 1 })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Delete Guide Response:', data);
+                        if (data.success) {
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Guide deleted successfully',
+                                icon: 'success'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: data.message || 'Failed to delete guide',
+                                icon: 'error'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An unexpected error occurred',
+                            icon: 'error'
+                        });
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
